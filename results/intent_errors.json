@@ -1,0 +1,26 @@
+[
+  {
+    "text": "carga horaria",
+    "intent": "carga_horaria",
+    "intent_prediction": {
+      "name": "sobre_carga_horaria",
+      "confidence": 0.17003871500492096
+    }
+  },
+  {
+    "text": "total de horas",
+    "intent": "carga_horaria",
+    "intent_prediction": {
+      "name": "contagem_horas",
+      "confidence": 0.10968921333551407
+    }
+  },
+  {
+    "text": "horas necessarias",
+    "intent": "carga_horaria",
+    "intent_prediction": {
+      "name": "sobre_carga_horaria",
+      "confidence": 0.1500471979379654
+    }
+  }
+]

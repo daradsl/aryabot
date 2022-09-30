@@ -1,0 +1,32 @@
+version: "3.0"
+stories:
+- story: happy path 2 (.\tests\test_stories.yml)
+  steps:
+  - intent: cumprimentar
+  - action: utter_cumprimentar  # predicted: utter_cumprimento
+  - user: |-
+      Tudo bem
+  - action: action_listen  # predicted: utter_continuar_conversa
+  - intent: despedir
+  - action: utter_despedida
+- story: carga_horaria_ciencia (.\tests\test_stories.yml)
+  steps:
+  - intent: cumprimentar
+  - action: utter_cumprimento
+  - intent: formacao_complementar
+  - action: utter_formacao_complementar
+  - action: utter_cont_formacao_complementar
+  - intent: afirmacao
+  - action: utter_choice_formacao_complementar
+  - intent: carga_horaria  # predicted: nlu_fallback: carga horaria
+  - action: utter_carga_horaria  # predicted: utter_continuar_conversa
+  - action: action_listen  # predicted: utter_carga_horaria_cc
+  - user: |-
+      sou da [ciência da computação] {"entity": "ciencia"}
+  - action: utter_carga_horaria_cc  # predicted: utter_continuar_conversa
+  - action: utter_carga_horaria_obs
+  - action: utter_cont_formacao_complementar
+  - intent: negacao
+  - action: utter_continuar_conversa
+  - intent: negacao
+  - action: utter_despedida

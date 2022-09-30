@@ -1,0 +1,68 @@
+stories:
+- story: happy path 1
+  steps:
+  - user: |
+      Oi
+    intent: cumprimentar 
+  - action: utter_cumprimento
+
+- story: happy path 2
+  steps:
+  - user: |
+      Olá!
+    intent: cumprimentar 
+  - action: utter_cumprimentar
+  - user: |
+      Tudo bem
+  - user: |
+      bye!
+    intent: despedir
+  - action: utter_despedida
+
+- story: despedida
+  steps:
+  - user: |
+      tchau!
+    intent: despedir
+  - action: utter_despedida
+
+- story: bot definicao
+  steps:
+  - user: |
+      quem é você?
+    intent: definicao_arya
+  - action: utter_definicao_bot
+
+
+#- story: carga_horaria_ciencia
+#  steps: 
+#  - user: |
+#      oi
+#    intent: cumprimentar
+#  - action: utter_cumprimento
+#  - user: |
+#      atividade complementar
+#    intent: formacao_complementar
+#  - action: utter_formacao_complementar
+#  - action: utter_cont_formacao_complementar
+#  - user: |
+#      sim
+#    intent: afirmacao
+#  - action: utter_choice_formacao_complementar
+#  - user: |
+#      carga horaria
+#    intent: carga_horaria
+#  - action: utter_carga_horaria
+#  - user: |
+#      sou da [ciência da computação] {"entity": "ciencia"}
+#  - action: utter_carga_horaria_cc
+#  - action: utter_carga_horaria_obs
+#  - action: utter_cont_formacao_complementar
+#  - user: |
+#      nao
+#    intent: negacao
+#  - action: utter_continuar_conversa
+#  - user: |
+#      nao
+#    intent: negacao
+#  - action: utter_despedida

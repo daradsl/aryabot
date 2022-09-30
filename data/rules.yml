@@ -1,0 +1,75 @@
+version: "3.0"
+
+
+rules:
+
+- rule: Responda sempre que for digitado ajuda
+  steps:
+  - intent: ajuda
+  - action: utter_ajuda
+
+- rule: Pedir para reformular a mensagem caso NLU não entenda
+  steps:
+  - intent: nlu_fallback
+  - action: utter_nao_nlu
+
+- rule: Diga tchau sempre que o usuário se despedir
+  steps:
+  - intent: despedir
+  - action: utter_despedida
+
+- rule: Explique a definição sempre que perguntar
+  steps:
+  - intent: definicao_arya
+  - action: utter_definicao_bot
+
+- rule: Responda sempre que houver agradecimento
+  steps:
+  - intent: agradecer
+  - action: utter_agradecimento
+
+- rule: Continuar conversa
+  steps:
+  - action: utter_continuar_conversa
+  - intent: afirmacao
+  - action: utter_cumprimento
+
+- rule: Não continuar conversa
+  steps:
+  - action: utter_continuar_conversa
+  - intent: negacao
+  - action: utter_despedida
+
+- rule: Ativa o formulário de opção de busca de projeto
+  steps:
+  - action: utter_tipo_busca_projetos
+  - action: project_form
+  - active_loop: project_form
+
+- rule: Enviando formulário de opção de busca de projeto
+  condition:
+  - active_loop: project_form
+  steps:
+  - action: project_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null 
+  - action: utter_cont_projetos
+  - action: action_reset_slots
+  - intent: negacao
+  - action: utter_continuar_conversa
+
+- rule: Enviando formulário de opção de busca de projeto e continuando
+  condition:
+  - active_loop: project_form
+  steps:
+  - action: project_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null 
+  - action: utter_cont_projetos
+  - action: action_reset_slots
+  - intent: afirmacao
+  - action: utter_tipo_busca_projetos
+  - action: project_form
+  - active_loop: project_form

@@ -1,0 +1,224 @@
+version: "3.0"
+
+intents:
+  - cumprimentar 
+  - despedir
+  - definicao_arya
+  - agradecer
+  - afirmacao
+  - negacao
+  - solicitacao_matricula
+  - correcao_matricula
+  - trancamento_disciplina
+  - carga_horaria
+  - formacao_complementar
+  - contagem_horas
+  - disciplinas_optativas
+  - ajuda
+  - projetos
+  - outros_canais
+  - coordenacao
+  - secretaria
+  - datas_importantes
+  - calendario
+  - ciencia
+  - engenharia
+  - exames
+  - inicio_semestre
+
+forms:
+  project_form:
+    required_slots:
+      - search_option
+      - type_option
+      - project_option
+      - teacher_option
+      - project_teacher_option
+
+slots:
+  search_option:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: project_form
+            requested_slot: search_option
+  type_option:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: project_form
+            requested_slot: type_option
+  project_option:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: project_form
+            requested_slot: project_option
+  teacher_option:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: project_form
+            requested_slot: teacher_option
+  project_teacher_option:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: project_form
+            requested_slot: project_teacher_option
+
+responses:
+  utter_fallback:
+  - text: "Desculpe, ainda não sei falar sobre isso ou talvez não consegui entender direito. Você pode perguntar de novo de outro jeito?"
+  - text: "Acho que não te entendi, você pode me perguntar de novo usando outras palavras?"
+
+  utter_nao_nlu:
+  - text: "Desculpe, não consegui entender sua mensagem. Pode me perguntar de outra forma?"
+  utter_nao_core:
+  - text: "Desculpe, não consegui encontrar uma resposta pra sua mensagem. Digite /restart para recomeçar a conversa."
+
+  utter_cumprimento:
+  - text: "Olá! Eu sou AryaBot, a assistente virtual da Computação. Como posso te ajudar?\n\nDigite 'ajuda', para ver com o que te ajudar."
+  - text: "Boas-vindas! Aqui é a AryaBot, em que posso te ajudar?\n\nDigite 'ajuda', para ver com quais assuntos posso te ajudar."
+
+  utter_definicao_bot:
+  - text: "Eu sou a AryaBot, estou aqui para auxiliar os estudantes dos cursos de Computação com dúvidas a respeito de sua jornada acadêmica."
+
+  utter_despedida:
+  - text: "Bons estudos! Até mais ^-^"
+  - text: "Até a próxima! Que a força esteja com você ^_<"
+
+  utter_calendario:
+  - text: "O Calendário Acadêmico pode ser acessado pelo site https://wp.ufpel.edu.br/computacao/calendario/\nPara verificar os prazos importantes do semestre basta perguntar sobre 'datas importantes'."
+
+  utter_datas_importantes:
+  - text: "As datas importantes do semestre são:\n"
+
+  utter_secretaria_contato:
+  - text: "A secretaria dos cursos de Computação pode te ajudar com esse assunto."
+  
+  utter_continuar_conversa:
+  - text: "\n\nGostaria de ajuda em algum outro assunto?"
+  - text: "\n\nPosso ajudar em mais algum assunto?"
+
+  utter_tudo_bem:
+  - text: "Tudo ótimo! :p"
+  - text: "Estou ótima :D e você?"
+
+  utter_agradecimento:
+  - text: "Por nada! Estou aqui para ajudar ;) "
+  - text: "Disponha! Se precisar é só chamar ;)"
+  - text: "Imagina! Estou aqui para ajudar ;)"
+
+  utter_formacao_complementar:
+  - text: "A formação complementar é formada por atividades complementares de ensino, pesquisa e extensão, e também por disciplinas optativas.\nA contabilização das horas deve ser realizada obrigatoriamente em dois momentos: Na matrícula em TCCI e no último semestre de conclusão do curso, um mês antes do encerramento das aulas, para contabilização final.\n"
+  
+  utter_cont_formacao_complementar:
+  - text: "Gostaria de saber mais informações a respeito da 'carga horária' necessária para as atividades, sobre as 'disciplinas optativas', ou sobre como solicitar a 'contagem das horas'?"
+
+  utter_choice_formacao_complementar:
+  - text: "Sobre qual gostaria de saber: carga horária, optativas ou contagem das horas?"
+
+  utter_carga_horaria:
+  - text: "Para te falar sobre a carga horária total de atividades complementares preciso saber seu curso. Você é da Ciência ou Engenharia da Computação?"
+
+  utter_carga_horaria_cc:
+  - text: "Carga horária de atividades complementares da Ciência da Computação:\n - 283h em disciplinas optativas\n - 320h em atividades complementares (ensino, pesquisa, extensão) \n - 217h em atividades livres\nObs: É preciso cumprir o mínimo de 120h em pelo menos dois tipos de atividades complementares diferentes. \n\n\nLembrando que a carga horária que te passei se refere aos ppcs dos cursos a partir de 2015. Caso pertença a uma versão anterior é necessario entrar em contato com a coordenação e verificar de acordo com o que consta no documento."
+
+  utter_carga_horaria_ec:
+  - text: "Carga horária de atividades complementares da Engenharia de Computação:\n - 226,6h em disciplinas optativas\n - 320h em atividades complementares (ensino, pesquisa, extensão) \n - 217h em atividades livres\nObs: É preciso cumprir o mínimo de 120h em pelo menos dois tipos de atividades complementares diferentes. \n\n\nLembrando que a carga horária que te passei se refere aos ppcs dos cursos a partir de 2015. Caso pertença a uma versão anterior é necessario entrar em contato com a coordenação e verificar de acordo com o que consta no documento."
+
+  utter_solicitacao_horas:
+  - text: "A solicitação inicial da contabilização das horas de atividades complementares ocorre por meio do preenchimento de um formulário, enviado para o email @inf. Neste formulário os certificados devem ser enviados.\nApós realizar a primeira solicitação, quando a contabilização for finalizada será retornado um link para acesso ao extrato do resultado da avaliação.\nCaso já tenha feito a primeira solicitação, é possível incluir novos certificados através do link retornado. Lembrando que após a inclusão é necessário comunicar por email, para que a contabilização seja atualizada.\nEm caso de dúvida entre em contato com o email: horas-complementares@inf.ufpel.edu.br."
+
+  utter_correcao_matricula:
+  - text: "Você pode solicitar a correção pelo Cobalto, através do link: https://cobalto.ufpel.edu.br/academico/alunos/solicitacaoCorrecaoMatricula"
+
+  utter_solicitacao_matricula:
+  - text: "Você pode fazer a solicitação de matrícula pelo Cobalto, através do link: https://cobalto.ufpel.edu.br/academico/alunos/solicitacaoMatricula"
+
+  utter_trancamento_disciplina:
+  - text: "Você pode realizar o trancamento pelo Cobalto, através do link: https://cobalto.ufpel.edu.br/academico/alunos/trancamento"
+
+  utter_disciplinas_optativas:
+  - text: "As disciplinas optativas são formadas por um conjunto de disciplinas que complementam a sua formação no curso. Podem ser escolhidas livremente dentre as disponíveis, e cursadas a qualquer momento. Costumam ser ofertadas conforme disponibilidade dos professores e interesse dos alunos. Além disso, seguem o mesmo sistema de avaliação das disciplinas obrigatórias.\n"
+
+  utter_projetos:
+  - text: "A Computação-UFPel possui projetos de pesquisa, ensino e extensão super interessantes e em diferentes áreas. Você deseja saber mais sobre algum projeto?"
+
+  utter_tipo_busca_projetos:
+  - text: "Você quer buscar o projeto por: \n1: Tipo de projeto (pesquisa, ensino ou extenção)\n2: Professor atuante"
+
+  utter_opcao_desejada:
+  - text: "Informe o número da opção desejada"
+
+  utter_tipo_projeto:
+  - text: "Escolha o tipo de projeto desejado: \n1: Pesquisa\n2: Ensino\n3: Extensão\n"
+
+  utter_escolher_projeto:
+  - text: "Entre com o número correspondente ao projeto para saber mais sobre ele"
+
+  utter_cont_projetos:
+  - text: "Deseja buscar outro projeto?"
+
+  utter_cont_form:
+  - text: "Deseja cancelar a busca por projeto?"
+
+  utter_projetos_do_tipo_selecionado:
+  - text: "projetos de ensino: \n1:gas\n2:hut8"
+  
+  utter_resumo_do_projeto:
+  - text: "resumo do projeto tal ....."
+
+  utter_cont_pesquisa:
+  - text: "Deseja saber mais sobre algum outro projeto de Pesquisa?"
+
+  utter_cont_ensino:
+  - text: "Deseja saber mais sobre algum outro projeto de Ensino?"
+
+  utter_cont_extensao:
+  - text: "Deseja saber mais sobre algum outro projeto de Extensão?"
+
+  utter_outro_projeto:
+  - text: "Gostaria de saber mais sobre outro tipo de projeto?"
+
+  utter_outros_canais:
+  - text: "A nossa Computação possui vários canais de comunicação e integração dos alunos. Aqui vão alguns links: 
+  \n- Discord: https://discord.gg/tBjx7722 
+  \n- Página Computação: https://www.facebook.com/computacao.ufpel/
+  \n- Grupo FB: https://www.facebook.com/groups/computacao.ufpel/
+  \n- Página DA: https://www.facebook.com/groups/311263858957735/user/100004009125181/"
+
+  utter_ajuda:
+  - text: "Posso te ajudar com os seguintes assuntos: 
+  \n- Calendário acadêmico
+  \n- Datas importantes
+  \n- Solicitação/correção/trancamento de matrícula
+  \n- Início do semestre
+  \n- Período de exames
+  \n- Atividades complementares
+  \n- Coordenação dos cursos
+  \n- Projetos da Computação
+  \n- Contato da secretaria
+  \n- Outros canais da Computação"
+
+actions:
+  - get_coordenacao
+  - get_secretaria
+  - get_solicitacao_matricula
+  - get_correcao_matricula
+  - get_trancamento
+  - get_datas
+  - get_exames
+  - get_inicio_semestre
+  - validate_project_form
+  - action_reset_slots
+
+session_config:
+  session_expiration_time: 60 # value in minutes
+  carry_over_slots_to_new_session: true

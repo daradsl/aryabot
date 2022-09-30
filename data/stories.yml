@@ -1,0 +1,133 @@
+version: "3.0"
+
+stories:
+
+- story: saudacoes
+  steps:
+  - intent: cumprimentar
+  - action: utter_cumprimento
+
+- story: calendario_academico
+  steps:
+  - intent: calendario
+  - action: utter_calendario
+  - action: utter_continuar_conversa
+
+- story: atividades_complementares
+  steps:
+  - intent: formacao_complementar
+  - action: utter_formacao_complementar
+  - action: utter_cont_formacao_complementar
+
+- story: fim_formacao_complementar
+  steps: 
+  - action: utter_cont_formacao_complementar
+  - intent: negacao
+  - action: utter_continuar_conversa
+
+- story: continuacao_formacao_complementar
+  steps: 
+  - action: utter_cont_formacao_complementar
+  - intent: afirmacao
+  - action: utter_choice_formacao_complementar
+
+- story: carga_horaria
+  steps: 
+  - action: utter_choice_formacao_complementar
+  - intent: carga_horaria
+  - action: utter_carga_horaria  
+
+- story: carga_horaria_ec
+  steps: 
+  - action: utter_carga_horaria
+  - intent: engenharia
+  - action: utter_carga_horaria_ec
+  - action: utter_cont_formacao_complementar
+
+- story: carga_horaria_cc
+  steps: 
+  - action: utter_carga_horaria
+  - intent: ciencia
+  - action: utter_carga_horaria_cc
+  - action: utter_cont_formacao_complementar
+
+- story: contagem_horas
+  steps:
+  - action: utter_choice_formacao_complementar
+  - intent: contagem_horas
+  - action: utter_solicitacao_horas
+  - action: utter_cont_formacao_complementar
+
+- story: optativas
+  steps:
+  - action: utter_choice_formacao_complementar
+  - intent: disciplinas_optativas
+  - action: utter_disciplinas_optativas
+  - action: utter_cont_formacao_complementar
+  
+- story: busca_do_projeto
+  steps:
+  - intent: projetos
+  - action: utter_projetos
+  - intent: afirmacao
+  - action: utter_tipo_busca_projetos
+  - action: project_form
+  - active_loop: project_form
+
+- story: outros_canais_computacao
+  steps:
+  - intent: outros_canais
+  - action: utter_outros_canais
+  - action: utter_continuar_conversa
+
+- story: Retorne os coordenadores atuais
+  steps:
+  - intent: coordenacao
+  - action: get_coordenacao
+  - action: utter_continuar_conversa
+
+- story: Retorne o contato da secretaria
+  steps:
+  - intent: secretaria
+  - action: get_secretaria
+  - action: utter_continuar_conversa
+
+- story: Retorna a data da solicitacao de matricula
+  steps: 
+  - intent: solicitacao_matricula
+  - action: get_solicitacao_matricula
+  - action: utter_solicitacao_matricula
+  - action: utter_continuar_conversa
+
+- story: Retorna a data da correcao de matricula
+  steps: 
+  - intent: correcao_matricula
+  - action: get_correcao_matricula
+  - action: utter_correcao_matricula
+  - action: utter_continuar_conversa
+
+- story: Retorna a data do trancamento de matricula
+  steps: 
+  - intent: trancamento_disciplina
+  - action: get_trancamento
+  - action: utter_trancamento_disciplina
+  - action: utter_continuar_conversa
+
+- story: Retorna as datas importantes do calendario
+  steps:
+  - intent: datas_importantes
+  - action: utter_datas_importantes
+  - action: get_datas
+  - action: utter_continuar_conversa
+
+- story: Retorna o periodo de exame
+  steps:
+  - intent: exames
+  - action: get_exames
+  - action: utter_continuar_conversa
+
+- story: Retorna o inicio do proximo semestre
+  steps:
+  - intent: inicio_semestre
+  - action: get_inicio_semestre
+  - action: utter_continuar_conversa

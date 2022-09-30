@@ -1,0 +1,181 @@
+version: "3.0"
+
+nlu:
+- intent: ciencia
+  examples: |
+    - ciencia da computacao
+    - ciência da Computação 
+    - ciencia
+    - cc
+
+- intent: engenharia
+  examples: |
+    - engenharia da computacao
+    - engenharia de computação
+    - engenharia
+    - ec
+
+- intent: cumprimentar
+  examples: |
+    - oi
+    - olá
+    - salve
+    - bom dia
+    - boa tarde
+    - boa noite
+    - e aí
+    - fala aí
+    - boa tarde
+    - boa noite
+    - bom dia
+
+- intent: coordenacao
+  examples: |
+    - coordenação dos cursos
+    - coordenacao dos cursos
+    - coordenacao
+    - coordenador da Engenharia de Computação
+    - coordenacao da Engenharia de Computação
+    - coordenacao da Ciência de Computação
+    - coordenador da Ciência da Computação
+
+- intent: secretaria
+  examples: |
+    - contato da secretaria
+    - falar com secretaria
+    - secretaria dos cursos
+
+- intent: datas_importantes
+  examples: |
+    - datas importantes
+    - datas do semestre
+    - datas
+
+- intent: calendario
+  examples: |
+    - calendario academico
+    - calendario
+    - calendário acadêmico
+
+- intent: despedir
+  examples: |
+    - tchau
+    - bye
+    - até mais
+    - falou
+    - xau
+    - goodbye
+    - tiau
+    - flw
+
+- intent: definicao_arya
+  examples: |
+    - você é bot?
+    - vc é bot?
+    - é um robô?
+    - o que vc é?
+
+- intent: agradecer
+  examples: |
+    - obrigado
+    - valeu
+    - obg
+    - vlw
+
+- intent: solicitacao_matricula
+  examples: |
+    - solicitação de matricula
+    - solicitar matrícula
+    - solicitacao de matricula
+    - solicitação de matrícula
+
+- intent: correcao_matricula
+  examples: |
+    - correção de matricula
+    - corrigir matrícula
+    - correcao de matricula
+
+- intent: trancamento_disciplina
+  examples: |
+    - trancamento de cadeiras
+    - trancar matérias
+    - trancamento de disciplinas
+
+- intent: formacao_complementar
+  examples: |
+    - horas complementares
+    - atividades complementares
+    - atividade complementar
+    - formação complementar
+
+- intent: afirmacao
+  examples: |
+    - sim
+    - yes
+    - yep
+    - s
+    - aham
+
+- intent: negacao
+  examples: |
+    - não
+    - nao
+    - no
+    - n
+    - naum
+    - nops
+
+- intent: contagem_horas
+  examples: |
+    - contabilização de horas complementares
+    - contagem das horas
+    - contagem horas
+    - total de horas
+
+- intent: carga_horaria 
+  examples: |
+    - carga horaria
+    - total de horas
+    - horas necessarias
+
+- intent: disciplinas_optativas
+  examples: |
+    - disciplinas optativas
+    - optativas
+    - cadeiras optativas
+
+- intent: projetos
+  examples: |
+    - projetos
+    - computação projetos
+    - projetos da computacao
+    - projetos da Computação
+    - quais os projetos da computacao
+    - saber sobre os projetos da computacao
+
+- intent: ajuda
+  examples: |
+    - ajuda
+    - Ajuda
+
+- intent: outros_canais
+  examples: |
+    - outros canais
+    - canais computação
+
+- intent: exames
+  examples: |
+    - semana de exames
+    - periodo de exames
+    - exames
+    - quando são os exames
+    - exame
+
+- intent: inicio_semestre
+  examples: |
+    - inicio do semestre
+    - começo do proximo semestre
+    - data do começo das aulas
+    - começo das aulas
+    - inicio das aulas
+    - dia que começa o semestre
