@@ -190,7 +190,7 @@ class ActionDatasImportantes(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         global matriculation, correction, locking, beggining, examination
-        dispatcher.utter_message(text="- Solicitação de matrícula: de " + str(matriculation[0]) + " a " + str(matriculation[1]) + ".\n" + "- Correção de matrícula: de " + str(correction[0]) + " a " + str(correction[1]) + ".\n"  + "- Inicio do semestre letivo: " + str(beggining) + ".\n" + "- Trancamento de disciplinas: de " + str(locking[0]) + " a " + str(locking[1]) + ".\n" + "- Período de exames: de " + str(examination[0]) + " a " + str(examination[1]) + ".\n")
+        dispatcher.utter_message(text="- Solicitação de matrícula: de " + str(matriculation[0]) + " a " + str(matriculation[1]) + ".\n" + "- Correção de matrícula: de " + str(correction[0]) + " a " + str(correction[1]) + ".\n"  + "- Inicio do semestre letivo: " + str(beggining[0]) + ".\n" + "- Trancamento de disciplinas: de " + str(locking[0]) + " a " + str(locking[1]) + ".\n" + "- Período de exames: de " + str(examination[0]) + " a " + str(examination[1]) + ".\n")
         return []
 
 def clean_option(option):
