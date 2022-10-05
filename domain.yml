@@ -83,7 +83,7 @@ responses:
   - text: "Desculpe, não consegui encontrar uma resposta pra sua mensagem. Digite /restart para recomeçar a conversa."
 
   utter_cumprimento:
-  - text: "Olá! Eu sou AryaBot, a assistente virtual da Computação. Como posso te ajudar?\n\nDigite 'ajuda', para ver com o que te ajudar."
+  - text: "Olá! Eu sou AryaBot, a assistente virtual da Computação. Como posso te ajudar?\n\nDigite 'ajuda', para ver com quais assuntos posso te ajudar."
   - text: "Boas-vindas! Aqui é a AryaBot, em que posso te ajudar?\n\nDigite 'ajuda', para ver com quais assuntos posso te ajudar."
 
   utter_definicao_bot:
@@ -116,25 +116,28 @@ responses:
   - text: "Imagina! Estou aqui para ajudar ;)"
 
   utter_formacao_complementar:
-  - text: "A formação complementar é formada por atividades complementares de ensino, pesquisa e extensão, e também por disciplinas optativas.\nA contabilização das horas deve ser realizada obrigatoriamente em dois momentos: Na matrícula em TCCI e no último semestre de conclusão do curso, um mês antes do encerramento das aulas, para contabilização final.\n"
+  - text: "A formação complementar é composta por disciplinas optativas e atividades complementares de ensino, pesquisa e extensão."
   
+  utter_info_horas:
+  - text: "A contabilização de horas das atividades deve ser realizada obrigatoriamente em dois momentos:\n1 -> Na matrícula em TCCI \n2 -> No último semestre de conclusão do curso, um mês antes do encerramento das aulas, para contabilização final."
+
   utter_cont_formacao_complementar:
   - text: "Gostaria de saber mais informações a respeito da 'carga horária' necessária para as atividades, sobre as 'disciplinas optativas', ou sobre como solicitar a 'contagem das horas'?"
 
   utter_choice_formacao_complementar:
-  - text: "Sobre qual gostaria de saber: carga horária, optativas ou contagem das horas?"
+  - text: "Sobre qual gostaria de saber: 'carga horária', 'optativas' ou 'contagem das horas'?"
 
   utter_carga_horaria:
   - text: "Para te falar sobre a carga horária total de atividades complementares preciso saber seu curso. Você é da Ciência ou Engenharia da Computação?"
 
   utter_carga_horaria_cc:
-  - text: "Carga horária de atividades complementares da Ciência da Computação:\n - 283h em disciplinas optativas\n - 320h em atividades complementares (ensino, pesquisa, extensão) \n - 217h em atividades livres\nObs: É preciso cumprir o mínimo de 120h em pelo menos dois tipos de atividades complementares diferentes. \n\n\nLembrando que a carga horária que te passei se refere aos ppcs dos cursos a partir de 2015. Caso pertença a uma versão anterior é necessario entrar em contato com a coordenação e verificar de acordo com o que consta no documento."
+  - text: "Carga horária de atividades complementares da Ciência da Computação:\n - 283h em disciplinas optativas\n - 320h em atividades complementares (ensino, pesquisa, extensão) \n - 217h em atividades livres\nObs: É preciso cumprir o mínimo de 120h em pelo menos dois tipos de atividades complementares diferentes. \n\n\nLembrando que a carga horária que te passei se refere aos ppcs dos cursos versão 6, a partir de 2015. Caso pertença a outra versão é preciso consultar no documento correspondente, em caso de dúvida entre em contato com a secretaria ou coordenação."
 
   utter_carga_horaria_ec:
-  - text: "Carga horária de atividades complementares da Engenharia de Computação:\n - 226,6h em disciplinas optativas\n - 320h em atividades complementares (ensino, pesquisa, extensão) \n - 217h em atividades livres\nObs: É preciso cumprir o mínimo de 120h em pelo menos dois tipos de atividades complementares diferentes. \n\n\nLembrando que a carga horária que te passei se refere aos ppcs dos cursos a partir de 2015. Caso pertença a uma versão anterior é necessario entrar em contato com a coordenação e verificar de acordo com o que consta no documento."
+  - text: "Carga horária de atividades complementares da Engenharia de Computação:\n - 226,6h em disciplinas optativas\n - 320h em atividades complementares (ensino, pesquisa, extensão) \n - 217h em atividades livres\nObs: É preciso cumprir o mínimo de 120h em pelo menos dois tipos de atividades complementares diferentes. \n\n\nLembrando que a carga horária que te passei se refere aos ppcs dos cursos versão 6, a partir de 2015. Caso pertença a outra versão é preciso consultar no documento correspondente, em caso de dúvida entre em contato com a secretaria ou coordenação."
 
   utter_solicitacao_horas:
-  - text: "A solicitação inicial da contabilização das horas de atividades complementares ocorre por meio do preenchimento de um formulário, enviado para o email @inf. Neste formulário os certificados devem ser enviados.\nApós realizar a primeira solicitação, quando a contabilização for finalizada será retornado um link para acesso ao extrato do resultado da avaliação.\nCaso já tenha feito a primeira solicitação, é possível incluir novos certificados através do link retornado. Lembrando que após a inclusão é necessário comunicar por email, para que a contabilização seja atualizada.\nEm caso de dúvida entre em contato com o email: horas-complementares@inf.ufpel.edu.br."
+  - text: "A solicitação inicial da contabilização das horas de atividades complementares ocorre por meio do preenchimento de um formulário, enviado para o email @inf. Neste formulário os certificados devem ser enviados.\nApós realizar a primeira solicitação, quando a contabilização for finalizada será retornado um link para acesso ao extrato do resultado da avaliação.\nCaso já tenha feito a primeira solicitação, é possível incluir novos certificados através do link retornado. \nLembrando que após a inclusão é necessário comunicar por email, para que a contabilização seja atualizada.\nEm caso de dúvida entre em contato com o email: horas-complementares@inf.ufpel.edu.br."
 
   utter_correcao_matricula:
   - text: "Você pode solicitar a correção pelo Cobalto, através do link: https://cobalto.ufpel.edu.br/academico/alunos/solicitacaoCorrecaoMatricula"
@@ -148,11 +151,14 @@ responses:
   utter_disciplinas_optativas:
   - text: "As disciplinas optativas são formadas por um conjunto de disciplinas que complementam a sua formação no curso. Podem ser escolhidas livremente dentre as disponíveis, e cursadas a qualquer momento. Costumam ser ofertadas conforme disponibilidade dos professores e interesse dos alunos. Além disso, seguem o mesmo sistema de avaliação das disciplinas obrigatórias.\n"
 
+  utter_disciplinas_optativas_link:
+  - text: "Você pode visualizar as disciplinas ofertadas, horários e professores através dos links: \n\n - Ciência: https://institucional.ufpel.edu.br/cursos/cod/3900\n\n - Engenharia: https://institucional.ufpel.edu.br/cursos/cod/3910"
+
   utter_projetos:
   - text: "A Computação-UFPel possui projetos de pesquisa, ensino e extensão super interessantes e em diferentes áreas. Você deseja saber mais sobre algum projeto?"
 
   utter_tipo_busca_projetos:
-  - text: "Você quer buscar o projeto por: \n1: Tipo de projeto (pesquisa, ensino ou extenção)\n2: Professor atuante"
+  - text: "Você quer buscar o projeto por: \n1: Tipo de projeto (pesquisa, ensino ou extensão)\n2: Professor atuante"
 
   utter_opcao_desejada:
   - text: "Informe o número da opção desejada"
