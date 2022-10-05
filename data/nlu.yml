@@ -14,6 +14,8 @@ nlu:
     - engenharia de computação
     - engenharia
     - ec
+    - eng de comp
+    - eng
 
 - intent: cumprimentar
   examples: |
@@ -115,6 +117,7 @@ nlu:
     - yep
     - s
     - aham
+    - pode ser
 
 - intent: negacao
   examples: |
@@ -135,6 +138,7 @@ nlu:
 - intent: carga_horaria 
   examples: |
     - carga horaria
+    - carga horária
     - total de horas
     - horas necessarias
 
