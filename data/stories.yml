@@ -17,6 +17,7 @@ stories:
   steps:
   - intent: formacao_complementar
   - action: utter_formacao_complementar
+  - action: utter_info_horas
   - action: utter_cont_formacao_complementar
 
 - story: fim_formacao_complementar
@@ -63,6 +64,7 @@ stories:
   - action: utter_choice_formacao_complementar
   - intent: disciplinas_optativas
   - action: utter_disciplinas_optativas
+  - action: utter_disciplinas_optativas_link
   - action: utter_cont_formacao_complementar
   
 - story: busca_do_projeto
