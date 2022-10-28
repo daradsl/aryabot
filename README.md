@@ -30,4 +30,13 @@ This command will run the webscraping module and create an xlsx file with the da
 ### Running the chatbot server:
 - First you need to train your rasa model 
 - For that use: rasa train command
-- After that you can talk with the chatbot with the command: `rasa shell`
+- After that you can talk with the chatbot with the command: `rasa shell`  
+
+</br>
+</br>
+</br>
+</br>
+
+### The Complete Flowchart
+
+![Alt text](https://github.com/daradsl/aryabot/blob/master/fluxograma-completo.png?raw=true)
