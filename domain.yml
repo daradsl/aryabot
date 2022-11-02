@@ -194,11 +194,12 @@ responses:
   - text: "Gostaria de saber mais sobre outro tipo de projeto?"
 
   utter_outros_canais:
-  - text: "A nossa Computação possui vários canais de comunicação e integração dos alunos. Aqui vão alguns links: 
+  - text: "A Computação possui vários canais de comunicação e integração entre os alunos.\nAqui vão alguns links: 
   \n- Discord: https://discord.gg/tBjx7722 
-  \n- Página Computação: https://www.facebook.com/computacao.ufpel/
-  \n- Grupo FB: https://www.facebook.com/groups/computacao.ufpel/
-  \n- Página DA: https://www.facebook.com/groups/311263858957735/user/100004009125181/"
+  \n- Página da Computação: https://www.facebook.com/computacao.ufpel/
+  \n- Página do Diretório Acadêmico: https://www.facebook.com/groups/311263858957735/user/100004009125181/
+  \n- Grupo do FB: https://www.facebook.com/groups/computacao.ufpel/"
+  
 
   utter_ajuda:
   - text: "Posso te ajudar com os seguintes assuntos: 

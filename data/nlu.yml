@@ -165,7 +165,9 @@ nlu:
 - intent: outros_canais
   examples: |
     - outros canais
-    - canais computação
+    - canais da computação
+    - canais
+    - sobre os canais
 
 - intent: exames
   examples: |
