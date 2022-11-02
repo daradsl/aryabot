@@ -55,27 +55,26 @@ def calendarDates(url):
         calendarURL = url
         months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outrobro", "Novembro", "Dezembro"]
 
-        pageCalendar = requests.get(calendarURL)                    # calendario academico do ano atual
-        soup = BeautifulSoup(pageCalendar.content, 'html.parser')     # soup com o html da página
+        pageCalendar = requests.get(calendarURL)                   
+        soup = BeautifulSoup(pageCalendar.content, 'html.parser')     
         calendar = soup.find(class_='dados-cobalto cobalto-calendario cobalto-calendario-zebrado')
         calendar = calendar.find_all("div")
 
         for i in range(len(calendar)):
             calendar[i] = calendar[i].get_text()
 
-        # testa se tem mes na row atual, se sim retorna o indice do mes. Se nao tem retorna -1
         def returnMonth(string): 
             for k in range(len(months)):
-                if(calendar[i].find(months[k]) != -1): # encontrou o mes
+                if(calendar[i].find(months[k]) != -1): 
                     return k
             return -1
         i = 0
         exit = False
         while(i<len(calendar)):
             monthRow = returnMonth(calendar[i])  
-            if(monthRow > -1 and exit == False):              # testa se tem mes nessa row
+            if(monthRow > -1 and exit == False):             
                 aux = -1
-                while((aux == -1) and (exit == False)):       # enquanto nao encontrar o proximo mes, adiciona o mes no fim da row
+                while((aux == -1) and (exit == False)):       
                     calendar[i] = calendar[i] + '#' + str(monthRow)
                     if(i<len(calendar) - 1):
                         exit = False
@@ -91,18 +90,18 @@ def calendarDates(url):
         def addDayToMonth(row, k):
             returnation = ['', '']
             exit = False
-            if(row[0].isdigit()==True):          # testa se tem dia na row
-                returnation[0] = row[0] + row[1]       # dia
-                returnation[1] = row[(len(row)-2):]    # mes
-                returnation[1] = returnation[1].replace('#', "")   # remove o #
+            if(row[0].isdigit()==True):          
+                returnation[0] = row[0] + row[1]       
+                returnation[1] = row[(len(row)-2):]    
+                returnation[1] = returnation[1].replace('#', "")   
             else:
-                while(exit == False):              # volta até encontrar a data mais próx
+                while(exit == False):              
                     k = k - 1  
                     row = calendar[k]
-                    if(row[0].isdigit()==True):           # quando achar a row que contem a data
-                        returnation[0] = row[0] + row[1]        # dia
-                        returnation[1] = row[-1] + row[-2]      # mes
-                        returnation[1] = returnation[1].replace('#', '')    # remove o #
+                    if(row[0].isdigit()==True):         
+                        returnation[0] = row[0] + row[1]        
+                        returnation[1] = row[-1] + row[-2]      
+                        returnation[1] = returnation[1].replace('#', '')    
                         exit = True  
             date = str(returnation[0]) + " de " + months[int(returnation[1])]
             return date
@@ -120,7 +119,7 @@ def calendarDates(url):
         for i in range(len(calendar)):
             calendar[i] = calendar[i].lower()
             calendar[i] = unidecode(calendar[i])
-            if("exames" in calendar[i]):      # exames[ ini, fim , ini, fim ] de 0 a 1 semestre 1 --- de 2 a 3 semestre 2
+            if("exames" in calendar[i]):     
                 if(not examPeriod[0]):
                     y = 0
                 else:
@@ -169,8 +168,6 @@ def calendarDates(url):
                 elif("fim" in calendar[i]):
                     locking[1] = addDayToMonth(calendar[i], i)
 
-        # testa se já passou um mes da ultima date do primeiro semestre
-        # se já mostrará as datas do próximo
         next = False
         aux = locking_re[1].split()
         aux = (months.index(aux[2])+1)
@@ -268,7 +265,7 @@ def teacherProjects (teacher, rows, table):
         if(i<len(rows) and "Pesquisa" in rows[i]):
             i+=1
             while(i<len(rows) and "tabela-quebra" not in rows[i]):
-                if(i < len(rows) and "<tr><td><a" in rows[i]): # encontrou projeto
+                if(i < len(rows) and "<tr><td><a" in rows[i]): 
                     aux = table[i].find('a').get_text()
                     research.append(aux)
                     researchProjects.append(aux)
@@ -279,7 +276,7 @@ def teacherProjects (teacher, rows, table):
         if(i<len(rows) and "Extensão" in rows[i]):
             i+=1
             while(i<len(rows) and "tabela-quebra" not in rows[i]):
-                if(i < len(rows) and "<tr><td><a" in rows[i]): # encontrou projeto
+                if(i < len(rows) and "<tr><td><a" in rows[i]): 
                     aux = table[i].find('a').get_text()
                     extension.append(aux)
                     extensionProjects.append(aux)
@@ -290,7 +287,7 @@ def teacherProjects (teacher, rows, table):
         if(i<len(rows) and "Ensino" in rows[i]):
             i+=1
             while(i<len(rows) and "tabela-quebra" not in rows[i]):
-                if(i < len(rows) and "<tr><td><a" in rows[i]): # encontrou projeto
+                if(i < len(rows) and "<tr><td><a" in rows[i]): 
                     aux = table[i].find('a').get_text()
                     teaching.append(aux)
                     teachingProjects.append(aux)
