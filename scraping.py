@@ -237,7 +237,6 @@ def listTeachers(urlTeachers):
 def getAbstract(project, type):
     global navigator
     aux = project[:30]
-    print(aux)
     try:
         navigator.find_element(By.PARTIAL_LINK_TEXT, aux).click()
         if(type == "research"):
@@ -254,7 +253,7 @@ def getAbstract(project, type):
             extensionAbstracts[project] = [abstract, link]
         navigator.back()
     except:
-        print("problema no resumo: " + project)
+        print("problem with abstract: " + project)
 
 def teacherProjects (teacher, rows, table):
     i = 0
@@ -328,10 +327,6 @@ def allProjects(teachers, url):
 
 def saveOnExcel(result):
     writer = pd.ExcelWriter('table.xlsx', engine='xlsxwriter')
-
-    print(type(result[2]))
-    print(type(result[6]))
-
 
     data = pd.Series(data= result[9])
     data.to_excel(writer, sheet_name="teachers", index=False)
