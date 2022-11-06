@@ -15,14 +15,16 @@
 - Pandas -> `conda install pandas`
 - Selenium -> `conda install selenium`
 - Schedule -> `conda install -c conda-forge schedule`
-- Unidecode -> `conda install unidecode`  
+- Unidecode -> `conda install unidecode`
 
-***
 Now you need to clone this project, enter the project folder and follow the next steps
+***
 
-### To build the dataset that will be used by AryaBot
+### To build the dataset that will be used by AryaBot:
 - You need to run: `python scraping.py`
 This command will run the webscraping module and create an xlsx file with the dataset
+
+Obs: For that you need to install the webdriver compatible with your browser version. If using Chrome look for: https://chromedriver.chromium.org/downloads
 
 ### Some intents use actions to bring up-to-date information 
 - To use them you need to start a separate server, using the same environment but with: `run rasa actions` command.
@@ -31,9 +33,8 @@ This command will run the webscraping module and create an xlsx file with the da
 - First you need to train your rasa model 
 - For that use: rasa train command
 - After that you can talk with the chatbot with the command: `rasa shell`  
+***
 
-</br>
-</br>
 </br>
 </br>
 
