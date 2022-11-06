@@ -210,28 +210,39 @@ def calendarDates(url):
         return([matriculationRequest(next), matriculationCorrection(next), lockingDisciplines(next), beginningOfSemester(next), examinationPeriod(next)])
 
 
-def listTeachers(urlTeachers):  
+def listTeachers(urlTeachers):
     try:
         html = requests.get(urlTeachers)                   
     except HTTPError as error:
         print(error.status, error.reason)
     except URLError as error:
         print(error.reason) 
-    soup = BeautifulSoup(html.content, 'html.parser')     
-    teachers = soup.findAll('ul')
-    teachers = str(teachers[20].get_text())
+    soup = BeautifulSoup(html.content, 'html.parser') 
+    teachers = soup.find('div', 'professor').get_text()
     teachers = teachers.split('\n')
-    teachersList = list(filter(None, teachers)) 
-    for i in range(len(teachersList)):
-        if("Corrêa" not in teachersList[i]):
-            teachersList[i] = unidecode(teachersList[i])
-        if("Jr" in teachersList[i]):
-            teachersList[i] = teachersList[i].replace('Jr', '') 
-        if("Correa" in teachersList[i]):
-            aux = teachersList[i].split() 
-            teachersList[i] = aux[0] + " " + aux[1]
-        teachersList[i] = teachersList[i].replace('\xa0', ' ')
-        teachersList[i] = re.sub(r'[^\w\s]','',teachersList[i])
+    teacherList = []
+    isTeacher = False
+    for teacher in teachers:
+        if("Aposentados" in teacher):
+            isTeacher = False
+        if(isTeacher == True and len(teacher)>0):
+            teacherList.append(teacher)
+        if("Docentes:" in teacher):
+            isTeacher = True
+    return teacherList
+
+def teachersParser(teachers):
+    teachersList = []
+    for teacher in teachers:
+        if("Corrêa" not in teacher):
+            newTeacher = unidecode(teacher)
+        if("Jr" in teacher):
+            newTeacher = teacher.replace('Jr', '')
+        if("Correa" in teacher):
+            newTeacher = teacher.split() 
+            newTeacher = newTeacher[0] + " " + newTeacher[1]
+        newTeacher = (newTeacher.replace('\xa0', ' '))
+        teachersList.append(re.sub(r'[^\w\s]','',newTeacher))
     return teachersList
 
 def getAbstract(project, type):
@@ -394,7 +405,8 @@ def scraping():
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     navigator = webdriver.Chrome(options=options)
-    teacherList = listTeachers(urlListTeachers)
+    teachers = listTeachers(urlListTeachers)
+    teacherList = teachersParser(teachers)
     result = allProjects(teacherList, urlTeachers)
     result.append(teacherList)
     secretariesCoordination = secretariesAndCoordinationContacts(urlSecretariesCoordination)
