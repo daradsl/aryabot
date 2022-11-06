@@ -24,6 +24,8 @@ Now you need to clone this project, enter the project folder and follow the next
 - You need to run: `python scraping.py`
 This command will run the webscraping module and create an xlsx file with the dataset
 
+Obs: For that you need to install the webdriver compatible with your browser version. If using Chrome look for: https://chromedriver.chromium.org/downloads
+
 ### Some intents use actions to bring up-to-date information 
 - To use them you need to start a separate server, using the same environment but with: `run rasa actions` command.
 
