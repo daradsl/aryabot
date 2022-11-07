@@ -247,9 +247,9 @@ def teachersParser(teachers):
 
 def getAbstract(project, type):
     global navigator
-    aux = project[:30]
+    search = project[:30]
     try:
-        navigator.find_element(By.PARTIAL_LINK_TEXT, aux).click()
+        navigator.find_element(By.PARTIAL_LINK_TEXT, search).click()
         if(type == "research"):
             link = navigator.current_url 
             abstract = navigator.find_element(By.XPATH, '//*[@id="conteudo"]/div[1]/div[1]/div[14]').text
@@ -264,13 +264,16 @@ def getAbstract(project, type):
             extensionAbstracts[project] = [abstract, link]
         navigator.back()
     except:
-        print("problem with abstract: " + project)
+        print("--> problem with abstract: " + project)
 
-def teacherProjects (teacher, rows, table):
+def teacherProjects (teacher, table):
     i = 0
     research = []
     extension = []
     teaching = []
+    rows = []
+    for row in table:
+        rows.append(str(row))
     while(i < len(rows)):
         if(i<len(rows) and "Pesquisa" in rows[i]):
             i+=1
@@ -310,14 +313,13 @@ def teacherProjects (teacher, rows, table):
     teacherExtensionProjects[teacher] = extension
     teacherTeachingProjects[teacher] = teaching
 
-
 def allProjects(teachers, url):
-    restTeachers = ""
+    remainingTeachers = []
     global navigator
-    for i in range(len(teachers)):
-        print("----> prof: " + teachers[i])
+    for teacher in teachers:
+        print("--> teacher: " + teacher)
         navigator.get(url)
-        navigator.find_element('xpath', '//*[@id="DataTables_Table_0_filter"]/label/input').send_keys(teachers[i])
+        navigator.find_element('xpath', '//*[@id="DataTables_Table_0_filter"]/label/input').send_keys(teacher)
         try:
             navigator.find_element('xpath', '//*[@id="DataTables_Table_0"]/tbody/tr/td').click()
             navigator.find_element('xpath', '//*[@id="proj-sup"]').click()
@@ -325,16 +327,15 @@ def allProjects(teachers, url):
             soup = BeautifulSoup(page.content, 'html.parser')    
             table = soup.find('table')
             table = table.find_all('tr')
-            rows = [None]*len(table)
-            for j in range(len(table)):
-                    rows[j] = str(table[j])
-            if(i<len(teachers)):
-                teacherProjects(teachers[i], rows, table)
+            if teacher:
+                teacherProjects(teacher, table)
         except:
-            restTeachers = restTeachers + "-" + teachers[i]
-            print(">> rest teachers: " + restTeachers)
-    return [teacherExtensionProjects, teacherResearchProjects, teacherTeachingProjects, researchProjects, teachingProjects, extensionProjects, researchAbstracts, teachingAbstracts, extensionAbstracts]
+            remainingTeachers.append(teacher)
+            print("--> remaining teachers: " + str(remainingTeachers))
 
+def dataReturn(teachers, url):
+    allProjects(teachers, url)
+    return [teacherExtensionProjects, teacherResearchProjects, teacherTeachingProjects, researchProjects, teachingProjects, extensionProjects, researchAbstracts, teachingAbstracts, extensionAbstracts]
 
 def saveOnExcel(result):
     writer = pd.ExcelWriter('table.xlsx', engine='xlsxwriter')
@@ -407,13 +408,12 @@ def scraping():
     navigator = webdriver.Chrome(options=options)
     teachers = listTeachers(urlListTeachers)
     teacherList = teachersParser(teachers)
-    result = allProjects(teacherList, urlTeachers)
+    result = dataReturn(teacherList, urlTeachers)
     result.append(teacherList)
     secretariesCoordination = secretariesAndCoordinationContacts(urlSecretariesCoordination)
     result.append(secretariesCoordination)
     dates = calendarDates(urlCalendar)
     result.append(dates)
-
 
     i = 0
     while i < 3:
