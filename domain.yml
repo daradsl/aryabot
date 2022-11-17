@@ -175,12 +175,6 @@ responses:
   utter_cont_form:
   - text: "Deseja cancelar a busca por projeto?"
 
-  utter_projetos_do_tipo_selecionado:
-  - text: "projetos de ensino: \n1:gas\n2:hut8"
-  
-  utter_resumo_do_projeto:
-  - text: "resumo do projeto tal ....."
-
   utter_cont_pesquisa:
   - text: "Deseja saber mais sobre algum outro projeto de Pesquisa?"
 
