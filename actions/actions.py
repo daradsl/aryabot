@@ -107,9 +107,7 @@ class ActionCoordenacao(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # current_curso = next(tracker.get_latest_entity_values("curso"), None)
         global coordination
-        # if not current_curso:   # coordenacao dos dois cursos
         dispatcher.utter_message(text="A coordenação atual dos cursos é:\n - Ciência da Computação: " + str(coordination[0])  + "\n - Engenharia de Computação: " + str(coordination[1]) + "\n - Pós-graduação: " + str(coordination[2]))
         return []
 
@@ -143,7 +141,6 @@ class ActionCorrecaoMatricula(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
         global correction
         dispatcher.utter_message(text="A correção de matrícula ocorre de " + str(correction[0]) + " a " + str(correction[1]))
         return []
@@ -154,8 +151,6 @@ class ActionTrancamentoDisc(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        
         global locking
         dispatcher.utter_message(text="O trancamento de disciplinas ocorre de " + str(locking[0]) + " a " + str(locking[1]))
         return []
@@ -166,7 +161,6 @@ class ActionInicioSemestre(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
         global beggining        
         dispatcher.utter_message(text="O início do semestre ocorre dia: " + str(beggining[0]))
         return []
@@ -177,7 +171,6 @@ class ActionExame(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
         global examination        
         dispatcher.utter_message(text="O período de exames ocorre de " + str(examination[0]) + " a " + str(examination[1]))
         return []
@@ -188,7 +181,6 @@ class ActionDatasImportantes(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
         global matriculation, correction, locking, beggining, examination
         dispatcher.utter_message(text="- Solicitação de matrícula: de " + str(matriculation[0]) + " a " + str(matriculation[1]) + ".\n" + "- Correção de matrícula: de " + str(correction[0]) + " a " + str(correction[1]) + ".\n"  + "- Inicio do semestre letivo: " + str(beggining[0]) + ".\n" + "- Trancamento de disciplinas: de " + str(locking[0]) + " a " + str(locking[1]) + ".\n" + "- Período de exames: de " + str(examination[0]) + " a " + str(examination[1]) + ".\n")
         return []
@@ -220,15 +212,10 @@ class ValidateProjectForm(FormValidationAction):
                 teachers += str(i+1) + ": " + teachersList[i] + '\n'
             return str(teachers)
         
-        
         option = clean_option(slot_value)
-        print(option)
         if option == '0':
             exit  =  True
             return {"search_option": option}
-            # ActionExecutionRejected
-            # return {"search_option": option}
-
         else:
             if option == '1':
                 dispatcher.utter_message(response='utter_tipo_projeto')
@@ -254,7 +241,6 @@ class ValidateProjectForm(FormValidationAction):
         updated_slots = domain_slots.copy()
         global exit
         if(exit == True):
-            print('sair é true')
             updated_slots.remove("search_option")
             updated_slots.remove("teacher_option")
             updated_slots.remove("project_teacher_option")
@@ -262,14 +248,11 @@ class ValidateProjectForm(FormValidationAction):
             updated_slots.remove("project_option")
         else:
             if (tracker.slots.get("search_option") == '1' and once is True):
-                print("removendo os teacher option")
                 updated_slots.remove("teacher_option")
                 updated_slots.remove("project_teacher_option")
             elif (tracker.slots.get("search_option") == '2' and once is True):
-                print("removendo os type option")
                 updated_slots.remove("type_option")
                 updated_slots.remove("project_option")
-        print(updated_slots)
         exit = False
         return updated_slots
 
@@ -310,21 +293,14 @@ class ValidateProjectForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         global exit
         type_option = clean_option(slot_value)
-        print(type_option)
-        print('aqui')
         if (exit or type_option == '0'):
             exit  =  True
             return {"type_option": type_option}
         else:
             if (type_option == '1' or type_option == '2' or type_option == '3'):
-
-                # chama a funcao que retorna a lista de projetos com a option
-                # printa o dispatcher disso e o prox que vai ser qual projeto quer
-                # print(projectsReturn)
                 dispatcher.utter_message(text=self.getProjectsListByType(type_option)[0])
                 dispatcher.utter_message(response='utter_escolher_projeto')
                 return {"type_option": type_option}
-                # chama o utter q ativa o prox formulario
             else:
                 dispatcher.utter_message(text="Opção inválida! :(\nTente novamente ou digite '0' para sair")
                 return {"type_option": None}
@@ -343,35 +319,26 @@ class ValidateProjectForm(FormValidationAction):
         print(project_option)
 
         def getProjectAbstractByType(self, option, type):
-            print("entrouuu") 
             index = (option - 1)
             abstract = {}
             global researchAbstracts, teachingAbstracts, extensionAbstracts
             aux = self.getProjectsListByType(type)
-            print("aux1")
-            print(aux[1])
             researchProjects = aux[1]
             teachingProjects = aux[2]
             extensionProjects = aux[3]
-            print("type:")
-            print(type)
             maxOption = 0
             if(type == '1'):  # pesquisa
                 projectName = researchProjects[index]
                 maxOption = len(researchProjects)
                 abstract = researchAbstracts
-                print(projectName)
             if(type == '2'):  # ensino
                 projectName = teachingProjects[index]
-                print(projectName)
                 maxOption = len(teachingProjects)
                 abstract = teachingAbstracts
             if(type == '3'):  # extensao
                 projectName = extensionProjects[index]
-                print(projectName)
                 maxOption = len(extensionProjects)
                 abstract = extensionAbstracts
-            print("maxOption" + str(maxOption))
             return [abstract[projectName][0], abstract[projectName][1], maxOption]
 
         try:
@@ -400,8 +367,6 @@ class ValidateProjectForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         global exit
         teacher_option = clean_option(slot_value)
-        print(teacher_option)
-        print('problem here')
 
         def getTeacherProjects(option, teachersList, teacherResearchProjects, teacherTeachingProjects, teacherExtensionProjects):
             global teacherProject
@@ -409,13 +374,9 @@ class ValidateProjectForm(FormValidationAction):
             index = (option - 1)
             teacher = teachersList[index]
             dispatcher.utter_message(text="Projetos do professor(a): " + str(teacher))
-            print(str(teacher))
             extension = list(set(teacherExtensionProjects[teacher]))
             research = list(set(teacherResearchProjects[teacher]))
             teaching = list(set(teacherTeachingProjects[teacher]))
-            print(extension)
-            print(research)
-            print(teaching)
             i = 1
             if(research):
                 for proj in research:
@@ -433,12 +394,9 @@ class ValidateProjectForm(FormValidationAction):
             for proj in teacherProject:
                 projectsReturn += proj
             maxOption = len(teachersList)
-            print("maxOption"+str(maxOption))
             return [str(projectsReturn), maxOption]
         global teachersList, teacherResearchProjects, teacherExtensionProjects, teacherTeachingProjects
-        print(teachersList)
         try:
-            print('no try')
             if (exit or teacher_option == '0'):
                 exit = True
                 return {"teacher_option": teacher_option}
@@ -469,34 +427,24 @@ class ValidateProjectForm(FormValidationAction):
         print(project_teacher_option)
 
         def getProjectAbstractByTeacher(option, researchAbstracts, teachingAbstracts, extensionAbstracts):
-            print("ESSE")
             index = option - 1
             global teacherProject
-            print(teacherProject)
             projectName = teacherProject[index]
-            print(projectName)
             result = ""
             if(index+1>9):
                 projectName = str(projectName[4:])
             else:
                 projectName = str(projectName[3:])
             teacherProject = []
-            print(projectName[:30])
             for key, value in researchAbstracts.items():
                 if(str(projectName[:30]) in key):
-                    print("entrou")
                     result = value
-                    # return value
             for key, value in teachingAbstracts.items():
                 if(str(projectName[:30]) in key):
-                    print("entrou")
                     result = value
-                    # return value
             for key, value in extensionAbstracts.items():
                 if(str(projectName[:30]) in key):
-                    print("entrou")
                     result = value
-                    # return value
             return result
         global researchAbstracts, teachingAbstracts, extensionAbstracts
         try:
@@ -520,13 +468,8 @@ class ValidateProjectForm(FormValidationAction):
             dispatcher.utter_message(text="Opção inválida! :(\nTente novamente ou digite '0' para sair")
             return {"project_teacher_option": None}
 
-    # Ação realizada pelo bot após receber
-    # todos os slots requisitados
     def submit(self, dispatcher, tracker, domain):
         dispatcher.utter_message('Coletei todos os slots!')
-        # O submit deve retornar uma lista
-        # Caso não haja retorno na função,
-        # basta colocar uma lista vazia
         return []        
 
 class ResetSlots(Action):
